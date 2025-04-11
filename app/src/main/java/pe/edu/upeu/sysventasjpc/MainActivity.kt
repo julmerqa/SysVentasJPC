@@ -66,6 +66,28 @@ class MainActivity : ComponentActivity() {
                     DarkGreenColors else LightGreenColors}
                 else->{LightRedColors}
             }
+            val searchBar = findViewById<SearchBar>(R.id.search_bar)
+
+            searchBar.setOnSearchClickListener {
+                // Acción cuando el usuario hace clic en la barra de búsqueda
+                println("Barra de búsqueda activada")
+            }
+
+            searchBar.setOnQueryTextListener(object : SearchBar.OnQueryTextListener {
+                fun onQueryTextSubmit(query: String?): Boolean {
+                    // Acción cuando el usuario envía la consulta (presiona 'enter')
+                    if (!query.isNullOrEmpty()) {
+                        println("Búsqueda: $query")
+                    }
+                    return true
+                }
+
+              fun onQueryTextChange(newText: String?): Boolean {
+                    // Acción cuando el texto cambia (por ejemplo, al escribir en la barra)
+                    println("Texto cambiado: $newText")
+                    return true
+                }
+            })
 
 
             TokenUtils.CONTEXTO_APPX=this@MainActivity
